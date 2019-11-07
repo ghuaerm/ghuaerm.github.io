@@ -1,0 +1,104 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>作品展示</title>
+
+<link rel="stylesheet" type="text/css" href="demo.css">
+</head>
+<body>
+	<br>
+	<br>
+	<h2><center>作品展示</center></h2>
+<div id="wrap">
+	<ul>
+		<li>
+			<a href="Android天气预报/weather.html" class="a1">
+				<img src="img/10556208_161709842590030.jpg">
+				<div class ="divA">
+					<p class="p1">Android天气预报</p>
+					<p class="p2">本系统实现一个基于Android的天气预报软件设计，由eclipse完成<br>关键词：天气预报；移动终端；Android；JSP；实时更新</p>
+					<p class="p3">2019-6-23</p>
+				</div>
+			</a>
+			<a href="Android天气预报/weather.html" class = "a2">
+					<p class="p4">Android天气预报</p>
+					<p class="p5">本系统实现一个基于Android的天气预报软件设计，由eclipse完成<br>关键词：天气预报；移动终端；Android；JSP；实时更新</p>
+					<p class="p6"><span>2019-6-23</span></p>
+					<p class="p7">查看详情></p>
+			</a>
+		</li>
+		<li>
+			<a href="Java-web/publish.html" class="a1">
+				<img src="img/10552347_231610350949916.jpg">
+				<div class ="divA">
+					<p class="p1">Java web——新闻发布系统</p>
+					<p class="p2">端午节实训项目<br>版权所有@不挂科小组</p>
+					<p class="p3">2019-6-7</p>
+				</div>
+			</a>
+			<a href="Java-web/publish.html" class = "a2">
+					<p class="p4">Java web——新闻发布系统</p>
+					<p class="p5">端午节实训项目<br>版权所有@不挂科小组</p>
+					<p class="p6"><span>2019-6-7</span></p>
+					<p class="p7">查看详情></p>
+			</a>
+		</li>
+		<li>
+			<a href="基于Linux的网络聊天室/LinuxChat.html" class="a1">
+				<img src="img/10527181_887630653793940.jpg">
+				<div class ="divA">
+					<p class="p1">基于Linux的网络聊天室</p>
+					<p class="p2">本次设计为了解决Linux下网络聊天问题，采用Ubuntu作为软件开发平台，<br>利用vim编辑器以及gcc命令和gdb调试来设计一个简单的网络聊天系统。</p>
+					<p class="p3">2019-5-20</p>
+				</div>
+			</a>
+			<a href="基于Linux的网络聊天室/LinuxChat.html" class = "a2">
+					<p class="p4">基于Linux的网络聊天室</p>
+					<p class="p5">本次设计为了解决Linux下网络聊天问题，采用Ubuntu作为软件开发平台，<br>利用vim编辑器以及gcc命令和gdb调试来设计一个简单的网络聊天系统。</p>
+					<p class="p6"><span>2019-5-20</span></p>
+					<p class="p7">查看详情></p>
+			</a>
+		</li>
+		<li>
+			<a href="FPGA——数字电子琴/piano.html" class="a1">
+				<img src="img/224607_162375013321817.jpg">
+				<div class ="divA">
+					<p class="p1">FPGA——数字电子琴</p>
+					<p class="p2">课题基于QuartusII平台，以Altera公司的EP4CE6E22C8芯片为核心器件，<br>通过运用硬件描述语言Verilog HDL按照模块化方式进行设计。</p>
+					<p class="p3">2018-12-27</p>
+				</div>
+			</a>
+			<a href="FPGA——数字电子琴/piano.html" class = "a2">
+					<p class="p4">FPGA——数字电子琴</p>
+					<p class="p5">课题基于QuartusII平台，以Altera公司的EP4CE6E22C8芯片为核心器件，<br>通过运用硬件描述语言Verilog HDL按照模块化方式进行设计。</p>
+					<p class="p6"><span>2018-12-27</span></p>
+					<p class="p7">查看详情></p>
+			</a>
+		</li>
+		
+	</ul>
+</div>
+<script src="http://www.jq22.com/jquery/jquery-1.10.2.js"></script>
+<script type="text/javascript">
+$('li').mouseenter(function(){
+	$(this).find('.divA').stop().animate({bottom:'-66px'});
+	$(this).find('.a2').css({left:'0'})
+	$(this).children('.a2').find('.p4').css({left:'0'})
+	$(this).children('.a2').find('.p5').css({left:'0'})
+	$(this).children('.a2').find('.p6').css({transform:'scale(1)'})
+	$(this).children('.a2').find('.p7').css({bottom:'25px'})
+})
+$('li').mouseleave(function(){
+	$(this).find('.divA').stop().animate({bottom:'0px'});
+	$(this).find('.a2').css({left:-$(this).width()})
+	$(this).children('.a2').find('.p4').css({left:-$(this).width()})
+	$(this).children('.a2').find('.p5').css({left:-$(this).width()})
+	$(this).children('.a2').find('.p6').css({transform:'scale(1.3)'})
+	$(this).children('.a2').find('.p7').css({bottom:'-50px'})
+})
+</script>
+
+
+</body>
+</html>

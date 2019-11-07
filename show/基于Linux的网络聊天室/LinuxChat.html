@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>基于Linux的网络聊天室</title>
+
+<link rel="stylesheet" type="text/css" href="demo.css">
+
+</head>
+<body background="">
+	<h2><center>基于Linux的网络聊天室</center></h2>
+		<section data-role="paragraph"><p style="text-align: justify; color:red; text-indent: 4em;">* 系统代码实现 *<br><br></p></section>
+            <p style="text-indent: 2em;">本系统代码通过多文件系统，模块化实现，多文件系统有一定的优缺点，但对于大型系统，多文件系统可以提高代码的高内聚和低耦合。<br><br></p>
+
+            <section data-role="paragraph"><section data-id="93002" data-tools="135编辑器"><section data-id="93002" data-tools="135编辑器">
+
+            	<section data-id="us2230453"><section data-width="90%"><p style="text-align: justify; text-indent: 2em;">其实不只是C语言，许多其它语言也经常使用这种方法。开发大型软件时这种方法非常有效（否则不明显，或者反而有副作用）。对于软件设计来说这不仅仅是一种风格，而是一种方法了。<br/><br></p></section></section></section></section></section><p></p><section data-role="paragraph">
+            		<p style="text-align: justify; text-indent: 2em;">include包含的声明函数的头文件，使用extern关键字可以直接调用，这样就实现了多文件和多模块了。<br><br></p>
+            		<p style="text-align: justify; text-indent: 2em;">本系统总共包含两个部分，客户端和服务器端。下面通过两部分分开介绍：<br><br></p></section>
+
+            	<section data-role="paragraph"><p style="text-align: justify; text-indent: 2em;">server.c是服务器端的代码；client.c为客户端的代码；makefile文件.<br><br></p></section><section><section><section><section><p style="text-align: justify; text-indent: 2em;">● server.c<br><br></p></section></section><section data-role="paragraph"><p style="text-align: justify; text-indent: 2em;">在server.c中创建了五个函数分别是：<br><br>
+            		<p style="text-align: justify; text-indent: 4em;">void *RecvMsg(void *arg_t){}//接收用户登录的信息<br>	
+            			<p style="text-align: justify; text-indent: 4em;">int SearchLocate(){}//寻找用户在列表中的位置<br>
+            				<p style="text-align: justify; text-indent: 4em;">void *SendMsg(void *fd){}//发送消息<br>
+            					<p style="text-align: justify; text-indent: 4em;">void TransmitMsg(int cmd,int locate,MESSAGE msg){}//通过聊天类型传输消息<br>
+            						<p style="text-align: justify; text-indent: 4em;">void UpdateList(int cmd , char *name,int locate){}//添加删除用户时进行更新<br><br>
+										<p style="text-align: justify; text-indent: 2em;">还引用头文件public.h中封装的结构体和创建多线程来进行实现服务端的监听。<br><br>						</p></section>
+
+				<section data-role="paragraph"><p style="text-align: justify; text-indent: 2em;">● client.c<br><br></p></section>
+
+				<section data-role="paragraph"><p style="text-align: justify; text-indent: 2em;">在client.c中同样引用了public.h中封装的结构体，并创建了六个函数分别是：<br><br>
+					<p style="text-align: justify; text-indent: 4em;">int CheckExist(){}//检查用户是否存在<br>
+						<p style="text-align: justify; text-indent: 4em;">void flush(){ char c; do{c=getc(stdin);}while(c!='\n'&&c!=EOF);};//判断字符串的输入<br>
+							<p style="text-align: justify; text-indent: 4em;">int MakeTempList(int *tmp){}//选择列表中用户进行聊天<br>
+								<p style="text-align: justify; text-indent: 4em;">void *RecvMsg(void *fd){}//显示聊天用户之间的对话<br>
+									<p style="text-align: justify; text-indent: 4em;">void SendMsg(int fd){}//登录之后发送消息<br>
+										<p style="text-align: justify; text-indent: 4em;">void  ShowList(){}//显示在线用户列表<br><br>
+											<p style="text-align: justify; text-indent: 2em;">另外在main函数中直接定义ip值为127.0.0.1，所以直接可以与本机互联，通过多线程服务来进行网络聊天。<br><br>
+</p></section>
+
+				<section data-role="paragraph"><p style="text-align: justify; text-indent: 2em;">● Makefile<br><br></p></section>
+
+				<section><section data-role="paragraph"><p style="text-align: justify; text-indent: 2em;">
+				Makefile文件的内容关系到了整个工程的编译规则。一个工程中的源文件不计其数，其按类型、功能、模块分别放在若干个目录中，makefile定义了一系列的规则来指定，哪些文件需要先编译，哪些文件需要后编译，哪些文件需要重新编译，甚至于进行更复杂的功能操作，所以makefile就像一个Shell脚本一样，其中也可以执行操作系统的命令。
+				<p style="text-align: justify; text-indent: 2em;">下面是这个工程的makefile文件内容：
+					<p style="text-align: justify; text-indent: 4em;">	tar:server  client
+						<p style="text-align: justify; text-indent: 4em;">	server:server.c
+							<p style="text-align: justify; text-indent: 6em;">		gcc -g -Wall -o  $@  $< -lpthread
+								<p style="text-align: justify; text-indent: 4em;">	client:client.c
+									<p style="text-align: justify; text-indent: 6em;">		gcc -g -Wall  -o  $@ $< -lpthread
+										<p style="text-align: justify; text-indent: 4em;">	c:
+											<p style="text-align: justify; text-indent: 4em;">  rm -rf server client  FIFO<br><br>
+												<p style="text-align: justify; text-indent: 2em;">因为在文件中使用了动态库pthread，因此在编译时要用包含指定的库，用“-l库名”来进行指定，动态库和静态库是有很大的区别的：静态库情况下，会把库直接加载到程序里，而在动态链接的时候，只是保留接口，将动态库与程序代码独立。这样就可以提高代码的可复用度和降低程序的耦合度。
+			</p></section></section></section></section><p></p><p><br/></p>
+				<section data-role="paragraph"><p style="text-align: justify; color:red; text-indent: 2em;">* 系统测试 *<br><br>
+
+				<section data-role="paragraph"><p style="text-align: justify; text-indent: 2em;">对本系统进行测试，需要运行一个服务器端，多个客户端进行测试，服务器端的运行结果如下图所示<br><br></p>
+				<p style="text-align: center;"><img title="1560756109960164kWD7.jpg" style="" src="http://ww1.sinaimg.cn/large/006Y5bsfly1g4b5qbsnmij30rz07vq41.jpg"/></p>
+				<p style="text-align: justify; text-indent: 2em;">服务器开启之后建立多个窗口来依次注册“宫本武藏”“娜可露露”“不知火舞”三个用户，选择1 public选项分别发送一条群聊消息。<br><br></p>
+				<p style="text-align: center;"><img title="1560756109960164y0QM.jpg" style="" src="http://ww1.sinaimg.cn/large/006Y5bsfly1g4b5u5kmijj30op0e5ack.jpg"/></p>
+				<p style="text-align: justify; text-indent: 2em;">选择2 private测试私聊发送消息的功能，显示在线用户列表后选择用户进行聊天。下图显示的是宫本武藏与娜可露露的聊天界面<br><br></p>
+				<p style="text-align: center;"><img title="1560756109960164y0QM.jpg" style="" src="http://ww1.sinaimg.cn/large/006Y5bsfly1g4b5uo0vjyj30jg0avgmh.jpg"/></p>
+				<p style="text-align: justify; text-indent: 2em;">进入不知火舞和娜可露露的聊天界面，测试用户接收消息的功能，下图显示的是不知火舞的聊天界面，其中收到了宫本武藏的私聊消息及所有用户的群聊消息。<br><br></p>
+				<p style="text-align: center;"><img title="1560756109960164y0QM.jpg" style="" src="http://ww1.sinaimg.cn/large/006Y5bsfly1g4b5ve4rmnj30p60i7dih.jpg"/></p>
+				<p style="text-align: justify; text-indent: 2em;">以上的聊天室操作都在server中进行监听，下面显示的是所有客户端操作的内容<br><br></p>
+				<p style="text-align: center;"><img title="1560756109960164y0QM.jpg" style="" src="http://ww1.sinaimg.cn/large/006Y5bsfly1g4b5w4vk01j30t00h4dkd.jpg"/></p>	
+				<p style="text-align: justify; text-indent: 2em;">最后选择3 exit退出系统，服务器监听到用户退出之后删除该用户，CTRL+C结束程序。<br><br></p>
+				<p style="text-align: center;"><img title="1560756109960164y0QM.jpg" style="" src="http://ww1.sinaimg.cn/large/006Y5bsfly1g4b5wnkkzij30iz0560ti.jpg"/></p>
+				
+				</section>
+				<section data-role="paragraph"><p style="text-align: justify; color:red; text-indent: 2em;">* 结束语 *<br><br>
+					<p style="text-align: justify; text-indent: 2em;">通过本次课程设计，我的软件开发能力在一定程度上提高了，对LINUX网络编程有了比较多的了解。实验过程中遇到了很多问题，刚开始对于shell一些简单的编程都不是很熟悉，通过去图书馆查阅资料，询问老师和同学，上网查阅资料，才得以解决各个问题。但是由于自己能力的有限，没能做出一个窗体，让系统更完美化。一开始想的是用QT实现的真正带窗口的聊天室，但是项目有点大，越研究内容越多，最终没能实现，这还需要以后的继续努力。<br><br></p>
+
+				</p></section>
+				<section data-role="paragraph"><p style="text-align: justify; color:red; text-indent: 2em;">* 源代码下载 *<br><br>
+				<p style="text-align: justify; text-indent: 2em;">CSDN下载链接：https://download.csdn.net/download/weixin_40928259/11255385<br><br></p>
+
+
+
+</body>
+
+
+
