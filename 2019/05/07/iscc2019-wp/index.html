@@ -243,7 +243,7 @@
 
     
         <meta property="article:published_time" content="Tue May 07 2019 16:56:27 GMT+0800">
-        <meta property="article:modified_time" content="Wed May 15 2019 16:18:02 GMT+0800">
+        <meta property="article:modified_time" content="Sun Nov 10 2019 15:52:49 GMT+0800">
     
 
     <!-- The Twitter Card protocol -->
@@ -266,7 +266,7 @@
     "mainEntityOfPage": "http://www.gackerm.me/2019/05/07/iscc2019-wp/index.html",
     "headline": "iscc2019_wp",
     "datePublished": "Tue May 07 2019 16:56:27 GMT+0800",
-    "dateModified": "Wed May 15 2019 16:18:02 GMT+0800",
+    "dateModified": "Sun Nov 10 2019 15:52:49 GMT+0800",
     "author": {
         "@type": "Person",
         "name": "GhackerM",
@@ -522,29 +522,29 @@
         <h1 id="ISCC-2019-wp"><a href="#ISCC-2019-wp" class="headerlink" title="ISCC 2019 wp"></a>ISCC 2019 wp</h1><p>一年一度的iscc又来了，去年打了一波题，没做完，，，今年坚持到最后</p>
 <h2 id="MISC"><a href="#MISC" class="headerlink" title="MISC"></a>MISC</h2><hr>
 <h3 id="0x01-隐藏的信息"><a href="#0x01-隐藏的信息" class="headerlink" title="0x01 隐藏的信息"></a>0x01 隐藏的信息</h3><p>打开文件显示的是上面的一串，一看是八进制数，进行进制转换的十六进制结果如下所示：</p>
-<p><img src="https://ws1.sinaimg.cn/large/006Y5bsfly1g2sv0wszj0j30oz0awdgr.jpg" alt></p>
+<p><img src="https://ws3.sinaimg.cn/large/006Y5bsfly1g2sv0wszj0j30oz0awdgr.jpg" alt></p>
 <p>放到工具中转成字符串</p>
-<p><img src="https://ws1.sinaimg.cn/large/006Y5bsfly1g2svb4ekakj30zr0ck0tg.jpg" alt></p>
+<p><img src="https://ws3.sinaimg.cn/large/006Y5bsfly1g2svb4ekakj30zr0ck0tg.jpg" alt></p>
 <p>可以看出是base64加密，解密后即得出flag。</p>
-<p><img src="https://ws1.sinaimg.cn/large/006Y5bsfly1g2svcvgzcjj30mx0dc74p.jpg" alt></p>
+<p><img src="https://ws3.sinaimg.cn/large/006Y5bsfly1g2svcvgzcjj30mx0dc74p.jpg" alt></p>
 <p>0x01 倒立屋</p>
 <h2 id="WEB"><a href="#WEB" class="headerlink" title="WEB"></a>WEB</h2><hr>
-<h3 id="0x01-web1"><a href="#0x01-web1" class="headerlink" title="0x01 web1"></a>0x01 web1</h3><p><img src="https://ws1.sinaimg.cn/large/006Y5bsfly1g2swo7tn9bj30sm0avjrl.jpg" alt></p>
+<h3 id="0x01-web1"><a href="#0x01-web1" class="headerlink" title="0x01 web1"></a>0x01 web1</h3><p><img src="https://ws3.sinaimg.cn/large/006Y5bsfly1g2swo7tn9bj30sm0avjrl.jpg" alt></p>
 <p>Get方法传参，value的值不能在32到127之间，由于w3lc0me_To_ISCC2019的ascii码最大不超过127。经百度得知chr()函数是除以256取余，那我们将w3lc0me_To_ISCC2019转换成ascii然后加256就OK了。</p>
 <p>接着看password，GET的password的值是字符串，intval(‘十六进制’)会返回0，但是intval(‘16进制+1’)，就会将16进制字符串强制转换为数型。所以就很容易绕过了。</p>
 <p>因此得到的payload为</p>
 <p><a href="http://39.100.83.188:8001/index.php?value[]=375&amp;value[]=307&amp;value[]=364&amp;value[]=355&amp;value[]=304&amp;value[]=365&amp;value[]=357&amp;value[]=351&amp;value[]=340&amp;value[]=367&amp;value[]=351&amp;value[]=329&amp;value[]=339&amp;value[]=323&amp;value[]=323&amp;value[]=306&amp;value[]=304&amp;value[]=305&amp;value[]=313&amp;password=2330e1" target="_blank" rel="noopener">http://39.100.83.188:8001/index.php?value[]=375&amp;value[]=307&amp;value[]=364&amp;value[]=355&amp;value[]=304&amp;value[]=365&amp;value[]=357&amp;value[]=351&amp;value[]=340&amp;value[]=367&amp;value[]=351&amp;value[]=329&amp;value[]=339&amp;value[]=323&amp;value[]=323&amp;value[]=306&amp;value[]=304&amp;value[]=305&amp;value[]=313&amp;password=2330e1</a></p>
-<p><img src="https://ws1.sinaimg.cn/large/006Y5bsfly1g2sx1qr20fj30sb0bkwev.jpg" alt></p>
+<p><img src="https://ws3.sinaimg.cn/large/006Y5bsfly1g2sx1qr20fj30sb0bkwev.jpg" alt></p>
 <h3 id="0x01-web2"><a href="#0x01-web2" class="headerlink" title="0x01 web2"></a>0x01 web2</h3><p>抓包后暴力破解直接的flag</p>
-<p><img src="https://ws1.sinaimg.cn/large/006Y5bsfly1g2sx3wcm9zj30tc0o0q79.jpg" alt></p>
+<p><img src="https://ws3.sinaimg.cn/large/006Y5bsfly1g2sx3wcm9zj30tc0o0q79.jpg" alt></p>
 <p>看来996很火啊。。。但愿能引起更多人注意</p>
-<h3 id="web4"><a href="#web4" class="headerlink" title="web4"></a>web4</h3><p><img src="https://ws1.sinaimg.cn/large/006Y5bsfgy1g322hbl4gej30ns0f1gmb.jpg" alt></p>
+<h3 id="web4"><a href="#web4" class="headerlink" title="web4"></a>web4</h3><p><img src="https://ws3.sinaimg.cn/large/006Y5bsfgy1g322hbl4gej30ns0f1gmb.jpg" alt></p>
 <p>读下代码，parse_url这个函数引起注意，百度了下，原来存在变量覆盖漏洞。</p>
-<p>Key要=0 ，key是被sha256加密过的，传一个hashed_key，将原来的密文覆盖掉，hashed_key的值是0经过sha256加密的密文<br><img src="https://ws1.sinaimg.cn/large/006Y5bsfgy1g322gti5z9j30k40cit90.jpg" alt><br>构造</p>
+<p>Key要=0 ，key是被sha256加密过的，传一个hashed_key，将原来的密文覆盖掉，hashed_key的值是0经过sha256加密的密文<br><img src="https://ws3.sinaimg.cn/large/006Y5bsfgy1g322gti5z9j30k40cit90.jpg" alt><br>构造</p>
 <p>?action=auth&amp;hashed_key=5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9&amp;key=0</p>
-<p><img src="https://ws1.sinaimg.cn/large/006Y5bsfgy1g322ftcpynj315204m0te.jpg" alt></p>
-<h3 id="misc-Welcome"><a href="#misc-Welcome" class="headerlink" title="misc Welcome"></a>misc Welcome</h3><p><img src="https://ws1.sinaimg.cn/large/006Y5bsfgy1g322njwge7j31560h7wik.jpg" alt></p>
-<p><img src="https://ws1.sinaimg.cn/large/006Y5bsfgy1g322oytw3wj30ol0cyjru.jpg" alt></p>
+<p><img src="https://ws3.sinaimg.cn/large/006Y5bsfgy1g322ftcpynj315204m0te.jpg" alt></p>
+<h3 id="misc-Welcome"><a href="#misc-Welcome" class="headerlink" title="misc Welcome"></a>misc Welcome</h3><p><img src="https://ws3.sinaimg.cn/large/006Y5bsfgy1g322njwge7j31560h7wik.jpg" alt></p>
+<p><img src="https://ws3.sinaimg.cn/large/006Y5bsfgy1g322oytw3wj30ol0cyjru.jpg" alt></p>
 
         
     
