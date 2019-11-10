@@ -243,7 +243,7 @@
 
     
         <meta property="article:published_time" content="Thu Sep 13 2018 21:17:58 GMT+0800">
-        <meta property="article:modified_time" content="Sun Sep 16 2018 10:40:18 GMT+0800">
+        <meta property="article:modified_time" content="Sun Nov 10 2019 16:04:35 GMT+0800">
     
 
     <!-- The Twitter Card protocol -->
@@ -266,7 +266,7 @@
     "mainEntityOfPage": "http://www.gackerm.me/2018/09/13/JarviosOJpwn-level2x64/index.html",
     "headline": "JarviosOJpwn_level2x64",
     "datePublished": "Thu Sep 13 2018 21:17:58 GMT+0800",
-    "dateModified": "Sun Sep 16 2018 10:40:18 GMT+0800",
+    "dateModified": "Sun Nov 10 2019 16:04:35 GMT+0800",
     "author": {
         "@type": "Person",
         "name": "GhackerM",
@@ -523,34 +523,34 @@
 <li>0x1 分析文件</li>
 </ul>
 <p>首先下载文件重命名为level2_64，放在Linux虚拟机里file一下,可以看出是64位的</p>
-<p><img src="https://ws1.sinaimg.cn/large/006Y5bsfly1fv889dtkt9j30zx03lwfn.jpg" alt></p>
+<p>(<a href="https://ws1.sinaimg.cn/large/006Y5bsfly1fv889dtkt9j30zx03lwfn.jpg" target="_blank" rel="noopener">https://ws1.sinaimg.cn/large/006Y5bsfly1fv889dtkt9j30zx03lwfn.jpg</a>)</p>
 <p>然后检查一下，没有开栈保护和装载地址随机化,但开启了NX保护。</p>
-<p><img src="https://ws1.sinaimg.cn/large/006Y5bsfly1fv88acn3ddj30vt06g3zl.jpg" alt></p>
+<p>(<a href="https://ws1.sinaimg.cn/large/006Y5bsfly1fv88acn3ddj30vt06g3zl.jpg" target="_blank" rel="noopener">https://ws1.sinaimg.cn/large/006Y5bsfly1fv88acn3ddj30vt06g3zl.jpg</a>)</p>
 <ul>
 <li>0x2 ida反汇编漏洞过程分析</li>
 </ul>
 <p>拿到ida64里面查看一下main函数，F5</p>
-<p><img src="https://ws1.sinaimg.cn/large/006Y5bsfly1fv88b9cnqsj30hl03uwef.jpg" alt></p>
+<p>(<a href="https://ws1.sinaimg.cn/large/006Y5bsfly1fv88b9cnqsj30hl03uwef.jpg" target="_blank" rel="noopener">https://ws1.sinaimg.cn/large/006Y5bsfly1fv88b9cnqsj30hl03uwef.jpg</a>)</p>
 <p>依然跟进第二个函数（vulnerable_function），存在溢出</p>
-<p><img src="https://ws1.sinaimg.cn/large/006Y5bsfly1fv88by1f9qj30fj040mx3.jpg" alt></p>
+<p>(<a href="https://ws1.sinaimg.cn/large/006Y5bsfly1fv88by1f9qj30fj040mx3.jpg" target="_blank" rel="noopener">https://ws1.sinaimg.cn/large/006Y5bsfly1fv88by1f9qj30fj040mx3.jpg</a>)</p>
 <p>唯一不同的是，64位程序在调用system函数时，参数的传递方式和32位不一样，32位是通过栈传参，而64位通过edi寄存器传参，所以这时我们的思路变成如何覆盖edi的值，通过基本rop就可以做到，利用程序自己的带有pop edi/rdi;ret语句达到给edi赋值的效果。pop edi语句是将当前的栈顶元素传递给edi，在执行pop语句时，只要保证栈顶元素是”/bin/sh”的地址，并将返回地址设置为system。</p>
 <ul>
 <li>0x3 找到system和bin/bash的地址</li>
 </ul>
 <p>shift+F12搜索字符串,发现了/bin/sh，双击打开</p>
-<p><img src="https://ws1.sinaimg.cn/large/006Y5bsfly1fv88kpe5p5j30g902sq2s.jpg" alt></p>
+<p>(<a href="https://ws1.sinaimg.cn/large/006Y5bsfly1fv88kpe5p5j30g902sq2s.jpg" target="_blank" rel="noopener">https://ws1.sinaimg.cn/large/006Y5bsfly1fv88kpe5p5j30g902sq2s.jpg</a>)</p>
 <p>同时，通过call system找到了system的地址</p>
-<p><img src="https://ws1.sinaimg.cn/large/006Y5bsfly1fv88lrdmwsj30ii01kwea.jpg" alt></p>
+<p>(<a href="https://ws1.sinaimg.cn/large/006Y5bsfly1fv88lrdmwsj30ii01kwea.jpg" target="_blank" rel="noopener">https://ws1.sinaimg.cn/large/006Y5bsfly1fv88lrdmwsj30ii01kwea.jpg</a>)</p>
 <p>可以使用ROPgadget搜索我们需要的rop链【ROPgadget可以在程序的汇编代码中寻找字符串或命令】</p>
-<p><img src="https://ws1.sinaimg.cn/large/006Y5bsfly1fvb6khemuhj30zy0e9mzn.jpg" alt></p>
+<p>(<a href="https://ws1.sinaimg.cn/large/006Y5bsfly1fvb6khemuhj30zy0e9mzn.jpg" target="_blank" rel="noopener">https://ws1.sinaimg.cn/large/006Y5bsfly1fvb6khemuhj30zy0e9mzn.jpg</a>)</p>
 <p>成功得到ret的地址。</p>
 <ul>
 <li>0x4 写payload得flag</li>
 </ul>
 <p>下面开始写脚本：</p>
-<p><img src="https://ws1.sinaimg.cn/large/006Y5bsfly1fv88mzgug8j30uu0d8jt8.jpg" alt></p>
+<p>(<a href="https://ws1.sinaimg.cn/large/006Y5bsfly1fv88mzgug8j30uu0d8jt8.jpg" target="_blank" rel="noopener">https://ws1.sinaimg.cn/large/006Y5bsfly1fv88mzgug8j30uu0d8jt8.jpg</a>)</p>
 <p>终端执行得flag</p>
-<p><img src="https://ws1.sinaimg.cn/large/006Y5bsfly1fv88op5tamj313p0fpgn8.jpg" alt></p>
+<p>(<a href="https://ws1.sinaimg.cn/large/006Y5bsfly1fv88op5tamj313p0fpgn8.jpg" target="_blank" rel="noopener">https://ws1.sinaimg.cn/large/006Y5bsfly1fv88op5tamj313p0fpgn8.jpg</a>)</p>
 
         
     

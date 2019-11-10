@@ -243,7 +243,7 @@
 
     
         <meta property="article:published_time" content="Thu Sep 13 2018 20:13:33 GMT+0800">
-        <meta property="article:modified_time" content="Sun Sep 16 2018 11:10:51 GMT+0800">
+        <meta property="article:modified_time" content="Sun Nov 10 2019 16:04:31 GMT+0800">
     
 
     <!-- The Twitter Card protocol -->
@@ -266,7 +266,7 @@
     "mainEntityOfPage": "http://www.gackerm.me/2018/09/13/JarviosOJpwn-level2/index.html",
     "headline": "JarviosOJpwn_level2",
     "datePublished": "Thu Sep 13 2018 20:13:33 GMT+0800",
-    "dateModified": "Sun Sep 16 2018 11:10:51 GMT+0800",
+    "dateModified": "Sun Nov 10 2019 16:04:31 GMT+0800",
     "author": {
         "@type": "Person",
         "name": "GhackerM",
@@ -523,33 +523,33 @@
 <li>0x1 分析文件</li>
 </ul>
 <p>首先下载文件重命名为level2，放在Linux虚拟机里file一下，可以看出是32位的</p>
-<p><img src="https://ws1.sinaimg.cn/large/006Y5bsfly1fv869p7klzj30zw03rdh0.jpg" alt></p>
+<p>(<a href="https://ws1.sinaimg.cn/large/006Y5bsfly1fv869p7klzj30zw03rdh0.jpg" target="_blank" rel="noopener">https://ws1.sinaimg.cn/large/006Y5bsfly1fv869p7klzj30zw03rdh0.jpg</a>)</p>
 <p>然后检查一下，没有开栈保护和装载地址随机化,但开启了NX保护。NX是栈内数据不可执行，栈内数据不可执行就要通过执行程序自己的部分来实现我们需要的操作。接着用ida64打开</p>
-<p><img src="https://ws1.sinaimg.cn/large/006Y5bsfly1fv86hr9mvtj30sq06fab7.jpg" alt></p>
+<p>(<a href="https://ws1.sinaimg.cn/large/006Y5bsfly1fv86hr9mvtj30sq06fab7.jpg" target="_blank" rel="noopener">https://ws1.sinaimg.cn/large/006Y5bsfly1fv86hr9mvtj30sq06fab7.jpg</a>)</p>
 <ul>
 <li>0x2 ida反汇编漏洞过程分析</li>
 </ul>
 <p>拿到ida32里面查看一下main函数，F5</p>
-<p><img src="https://ws1.sinaimg.cn/large/006Y5bsfly1fv86vm35wgj30i203vglk.jpg" alt></p>
+<p>(<a href="https://ws1.sinaimg.cn/large/006Y5bsfly1fv86vm35wgj30i203vglk.jpg" target="_blank" rel="noopener">https://ws1.sinaimg.cn/large/006Y5bsfly1fv86vm35wgj30i203vglk.jpg</a>)</p>
 <p>依然跟进第二个函数（vulnerable_function），存在溢出</p>
-<p><img src="https://ws1.sinaimg.cn/large/006Y5bsfly1fv87fg2h41j30h904pt8o.jpg" alt></p>
+<p>(<a href="https://ws1.sinaimg.cn/large/006Y5bsfly1fv87fg2h41j30h904pt8o.jpg" target="_blank" rel="noopener">https://ws1.sinaimg.cn/large/006Y5bsfly1fv87fg2h41j30h904pt8o.jpg</a>)</p>
 <p>这次system函数又出现了。于是想着是否可以通过控制调用system(“/bin/sh”)得到shell，将返回地址用system的地址覆盖，将传入参数设置成”/bin/sh”<br>思路如下：</p>
-<p><img src="https://ws1.sinaimg.cn/large/006Y5bsfly1fv87s8f2puj30ol0ec76k.jpg" alt></p>
+<p>(<a href="https://ws1.sinaimg.cn/large/006Y5bsfly1fv87s8f2puj30ol0ec76k.jpg" target="_blank" rel="noopener">https://ws1.sinaimg.cn/large/006Y5bsfly1fv87s8f2puj30ol0ec76k.jpg</a>)</p>
 <ul>
 <li>0x3 找到system和bin/bash的地址</li>
 </ul>
 <p>shift+F12搜索字符串,发现了/bin/sh</p>
-<p><img src="https://ws1.sinaimg.cn/large/006Y5bsfly1fv87hx3iy6j30tz02tglk.jpg" alt></p>
+<p>(<a href="https://ws1.sinaimg.cn/large/006Y5bsfly1fv87hx3iy6j30tz02tglk.jpg" target="_blank" rel="noopener">https://ws1.sinaimg.cn/large/006Y5bsfly1fv87hx3iy6j30tz02tglk.jpg</a>)</p>
 <p>同时，通过call system找到了system的地址</p>
-<p><img src="https://ws1.sinaimg.cn/large/006Y5bsfly1fv87ec7fz8j30mw023mx0.jpg" alt></p>
+<p>(<a href="https://ws1.sinaimg.cn/large/006Y5bsfly1fv87ec7fz8j30mw023mx0.jpg" target="_blank" rel="noopener">https://ws1.sinaimg.cn/large/006Y5bsfly1fv87ec7fz8j30mw023mx0.jpg</a>)</p>
 <p>这样我们就可以构造一个system(“/bin/sh”)的伪栈帧，通过控制vulnerable_function()返回到该伪栈帧，即可执行system(“/bin/sh”)来get shell</p>
 <ul>
 <li>0x4 写payload得flag</li>
 </ul>
 <p>下面开始写脚本：</p>
-<p><img src="https://ws1.sinaimg.cn/large/006Y5bsfly1fv87mv5fcej30vn0cwmyu.jpg" alt></p>
+<p>(<a href="https://ws1.sinaimg.cn/large/006Y5bsfly1fv87mv5fcej30vn0cwmyu.jpg" target="_blank" rel="noopener">https://ws1.sinaimg.cn/large/006Y5bsfly1fv87mv5fcej30vn0cwmyu.jpg</a>)</p>
 <p>终端执行得flag</p>
-<p><img src="https://ws1.sinaimg.cn/large/006Y5bsfly1fv87prrdkoj310j0a4t9o.jpg" alt></p>
+<p>(<a href="https://ws1.sinaimg.cn/large/006Y5bsfly1fv87prrdkoj310j0a4t9o.jpg" target="_blank" rel="noopener">https://ws1.sinaimg.cn/large/006Y5bsfly1fv87prrdkoj310j0a4t9o.jpg</a>)</p>
 
         
     

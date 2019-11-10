@@ -243,7 +243,7 @@
 
     
         <meta property="article:published_time" content="Thu Sep 06 2018 18:23:18 GMT+0800">
-        <meta property="article:modified_time" content="Thu Sep 13 2018 20:08:15 GMT+0800">
+        <meta property="article:modified_time" content="Sun Nov 10 2019 16:04:24 GMT+0800">
     
 
     <!-- The Twitter Card protocol -->
@@ -266,7 +266,7 @@
     "mainEntityOfPage": "http://www.gackerm.me/2018/09/06/JarviosOJpwn_level0/index.html",
     "headline": "JarviosOJpwn_level0",
     "datePublished": "Thu Sep 06 2018 18:23:18 GMT+0800",
-    "dateModified": "Thu Sep 13 2018 20:08:15 GMT+0800",
+    "dateModified": "Sun Nov 10 2019 16:04:24 GMT+0800",
     "author": {
         "@type": "Person",
         "name": "GhackerM",
@@ -523,28 +523,28 @@
 <li>0x1 分析文件</li>
 </ul>
 <p>首先下载文件重命名为level0，放到Linux虚拟机里file一下，可以看出是64位的</p>
-<p><img src="https://ws1.sinaimg.cn/large/006Y5bsfly1fv7no70ik8j31ha033q3t.jpg" alt></p>
+<p>(<a href="https://ws1.sinaimg.cn/large/006Y5bsfly1fv7no70ik8j31ha033q3t.jpg" target="_blank" rel="noopener">https://ws1.sinaimg.cn/large/006Y5bsfly1fv7no70ik8j31ha033q3t.jpg</a>)</p>
 <p>然后检查一下，几乎没开什么保护机制，接着用ida64打开</p>
-<p><img src="https://ws1.sinaimg.cn/large/006Y5bsfly1fv7nwnohedj31cg095dhh.jpg" alt></p>
+<p>(<a href="https://ws1.sinaimg.cn/large/006Y5bsfly1fv7nwnohedj31cg095dhh.jpg" target="_blank" rel="noopener">https://ws1.sinaimg.cn/large/006Y5bsfly1fv7nwnohedj31cg095dhh.jpg</a>)</p>
 <ul>
 <li>0x2 ida反汇编漏洞过程分析</li>
 </ul>
 <p>找到并进入main函数，main函数就调用了两个函数</p>
-<p><img src="https://ws1.sinaimg.cn/large/006Y5bsfly1fv7o1gmo96j30n50itabm.jpg" alt></p>
+<p>(<a href="https://ws1.sinaimg.cn/large/006Y5bsfly1fv7o1gmo96j30n50itabm.jpg" target="_blank" rel="noopener">https://ws1.sinaimg.cn/large/006Y5bsfly1fv7o1gmo96j30n50itabm.jpg</a>)</p>
 <p>F5</p>
-<p><img src="https://ws1.sinaimg.cn/large/006Y5bsfly1fv7oaazm9bj30g003ea9x.jpg" alt></p>
+<p>(<a href="https://ws1.sinaimg.cn/large/006Y5bsfly1fv7oaazm9bj30g003ea9x.jpg" target="_blank" rel="noopener">https://ws1.sinaimg.cn/large/006Y5bsfly1fv7oaazm9bj30g003ea9x.jpg</a>)</p>
 <p>跟进第二个函数（vulnerable_function），存在栈溢出</p>
-<p><img src="https://ws1.sinaimg.cn/large/006Y5bsfly1fv7ogli9k7j30ft04h745.jpg" alt></p>
+<p>(<a href="https://ws1.sinaimg.cn/large/006Y5bsfly1fv7ogli9k7j30ft04h745.jpg" target="_blank" rel="noopener">https://ws1.sinaimg.cn/large/006Y5bsfly1fv7ogli9k7j30ft04h745.jpg</a>)</p>
 <p>可以看出存在溢出buf缓冲区。又找到callsystem函数</p>
-<p><img src="https://ws1.sinaimg.cn/large/006Y5bsfly1fv7ojb8cjzj30ec03vglg.jpg" alt></p>
+<p>(<a href="https://ws1.sinaimg.cn/large/006Y5bsfly1fv7ojb8cjzj30ec03vglg.jpg" target="_blank" rel="noopener">https://ws1.sinaimg.cn/large/006Y5bsfly1fv7ojb8cjzj30ec03vglg.jpg</a>)</p>
 <p>只要控制程序返回到callsystem地址即可。找到callsystem地址。<br>【system (“/bin/bash”)pwn套路，不多解释】思路已经很明确了</p>
 <ul>
 <li>0x3 写payload得flag</li>
 </ul>
 <p>下面开始写脚本：</p>
-<p><img src="https://ws1.sinaimg.cn/large/006Y5bsfly1fv7pat6ffvj30vs0ib0ub.jpg" alt></p>
+<p>(<a href="https://ws1.sinaimg.cn/large/006Y5bsfly1fv7pat6ffvj30vs0ib0ub.jpg" target="_blank" rel="noopener">https://ws1.sinaimg.cn/large/006Y5bsfly1fv7pat6ffvj30vs0ib0ub.jpg</a>)</p>
 <p>在终端执行得flag</p>
-<p><img src="https://ws1.sinaimg.cn/large/006Y5bsfly1fv7otj1fvij317p0jracm.jpg" alt></p>
+<p>(<a href="https://ws1.sinaimg.cn/large/006Y5bsfly1fv7otj1fvij317p0jracm.jpg" target="_blank" rel="noopener">https://ws1.sinaimg.cn/large/006Y5bsfly1fv7otj1fvij317p0jracm.jpg</a>)</p>
 <p>这两周在学长的带领下接触了pwn爷爷……</p>
 
         
