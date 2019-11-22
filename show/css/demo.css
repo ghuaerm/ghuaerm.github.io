@@ -6,16 +6,38 @@
 a{
 	text-decoration: none;
 }
-#wrap{
+
+body {
+	background: #16a085;
+	font-family: 'Montserrat', sans-serif;
+	color: #fff;
+	line-height: 1.3;
+	-webkit-font-smoothing: antialiased;
+  }
+
+#particles{
 	width: 1008px;
-	height: 574px;
+	height: 260px;
 	margin: 100px auto;
 }
-#wrap ul li .a1 img{
+/* #particles {
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+  }假设是五个的话可以不浮动，就是并列放*/  
+.intro {
+	position: absolute;
+	left: 0;
+	top: 22%;
+	padding: 0 20px;
+	width: 100%;
+	text-align: center;
+  }
+#particles ul li .a1 img{
 	width: 474px;
 	height: 267px;
 }
-#wrap ul li{
+#particles ul li{
 	width: 474px;
 	height: 267px;
 	list-style: none;
@@ -24,7 +46,7 @@ a{
 	overflow: hidden;
 	margin: 5px;
 } 
-#wrap ul li .a1 .divA{
+#particles ul li .a1 .divA{
 	position: absolute;
 	bottom: 0;
 	left: 0;
@@ -33,24 +55,24 @@ a{
 	padding: 10px 20px;
 	background: #fafafa;
 }
-#wrap ul li .a1 .divA>.p1{
+#particles ul li .a1 .divA>.p1{
 	width: 312px;
 	height: 25px;
 	font-size: 18px;
     line-height: 25px;
     color: #666;
 }
-#wrap ul li .a1 .divA>.p2{
+#particles ul li .a1 .divA>.p2{
 	width: 312px;
 	height: 21px;
     font-size: 14px;
     color: #b4b4b4;
     line-height: 20px;
-    white-space: nowrap;
+    white-space: noparticles;
     overflow: hidden;
     text-overflow: ellipsis;
 }
-#wrap ul li .a1 .divA>.p3{
+#particles ul li .a1 .divA>.p3{
 	position: absolute;
 	right: 0;
 	bottom: 12px;
@@ -58,12 +80,12 @@ a{
 	height: 28px;
 	color: #f60;
 }
-#wrap ul li .a1 .divA>.p3>span{
+#particles ul li .a1 .divA>.p3>span{
 	font-size: 24px;
 	font-weight:800;
 }
 /*遮罩*/
-#wrap ul li .a2{
+#particles ul li .a2{
 	position: absolute;
 	top: 0;
 	left:-474PX;
@@ -74,7 +96,7 @@ a{
 	background: rgba(0,0,0,0.5);
 	transition: all 0.2s;  
 } 
-#wrap ul li .a2 .p4{
+#particles ul li .a2 .p4{
 	width: 474px;
 	text-align: center;
 	position: absolute;
@@ -85,7 +107,7 @@ a{
     font-weight: bold;
     transition: all 0.2s 0.1s ease-out ;  
 }
-#wrap ul li .a2 .p5{
+#particles ul li .a2 .p5{
 	width: 474px;
 	text-align: center;
 	line-height:20px ;
@@ -97,20 +119,20 @@ a{
     color: white;
     transition: all 0.2s 0.2s ease-out ;  
 }
-#wrap ul li .a2 .p6{
+#particles ul li .a2 .p6{
 	position: absolute;
 	top: 140px;
 	left: 175px;
 	transform: scale(1.4);
 	transition: all 0.3s 0.2s ;
 }
-#wrap ul li .a2 .p6 span{
+#particles ul li .a2 .p6 span{
 	font-family: Arial;
     font-size: 36px;
     font-weight: 700;
     color: white;
 }
-#wrap ul li .a2 .p7{
+#particles ul li .a2 .p7{
 	position: absolute;
 	bottom:-50px;
 	left: 145px;
