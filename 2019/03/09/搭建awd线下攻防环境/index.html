@@ -243,7 +243,7 @@
 
     
         <meta property="article:published_time" content="Sat Mar 09 2019 17:16:52 GMT+0800">
-        <meta property="article:modified_time" content="Sun Nov 10 2019 16:05:03 GMT+0800">
+        <meta property="article:modified_time" content="Sun Jan 31 2021 14:55:42 GMT+0800">
     
 
     <!-- The Twitter Card protocol -->
@@ -266,7 +266,7 @@
     "mainEntityOfPage": "http://www.gackerm.me/2019/03/09/搭建awd线下攻防环境/index.html",
     "headline": "搭建awd线下攻防环境",
     "datePublished": "Sat Mar 09 2019 17:16:52 GMT+0800",
-    "dateModified": "Sun Nov 10 2019 16:05:03 GMT+0800",
+    "dateModified": "Sun Jan 31 2021 14:55:42 GMT+0800",
     "author": {
         "@type": "Person",
         "name": "GhackerM",
@@ -354,7 +354,7 @@
     </button>
 
     <ul class="post-toc-wrap mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" for="post-toc-trigger-btn" style="max-height:80vh; overflow-y:scroll;">
-        <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#搭建属于自己的awd训练平台-linux下"><span class="post-toc-number">1.</span> <span class="post-toc-text">搭建属于自己的awd训练平台(linux下)</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Start"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">Start</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#END"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">END</span></a></li></ol></li></ol>
+        <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#搭建属于自己的awd训练平台-linux"><span class="post-toc-number">1.</span> <span class="post-toc-text">搭建属于自己的awd训练平台(linux)</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Start"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">Start</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#END"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">END</span></a></li></ol></li></ol>
     </ul>
     
 
@@ -519,35 +519,28 @@
                 <!-- Post Content -->
                 <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
     
-        <h1 id="搭建属于自己的awd训练平台-linux下"><a href="#搭建属于自己的awd训练平台-linux下" class="headerlink" title="搭建属于自己的awd训练平台(linux下)"></a>搭建属于自己的awd训练平台(linux下)</h1><p>今天就和大家分享一下如何在资源有限的情况下去搭建自己的awd线下赛环境。翻遍各大资源站点后，终于在github上找到了一个开源项目，这里分享给大家：</p>
+        <h1 id="搭建属于自己的awd训练平台-linux"><a href="#搭建属于自己的awd训练平台-linux" class="headerlink" title="搭建属于自己的awd训练平台(linux)"></a>搭建属于自己的awd训练平台(linux)</h1><p>今天就和大家分享一下如何在资源有限的情况下去搭建自己的awd线下赛环境。翻遍各大资源站点后，终于在github上找到了一个开源项目，这里分享给大家：</p>
 <pre><code>https://github.com/zhl2008/awd-platform</code></pre><h2 id="Start"><a href="#Start" class="headerlink" title="Start"></a>Start</h2><p>首先我们装一个ubuntu18.04的云服务器，然后登陆远程的ssh（没有SSH服务的看一下上一篇博客）</p>
 <p>将项目克隆到服务器上：</p>
 <pre><code>git clone https://github.com/zhl2008/awd-platform.git</code></pre><p>然后进入项目</p>
-<pre><code>cd awd-platform/</code></pre><p>(<a href="https://ws1.sinaimg.cn/large/006Y5bsfly1g0ws68wvljj30gy04xq39.jpg" target="_blank" rel="noopener">https://ws1.sinaimg.cn/large/006Y5bsfly1g0ws68wvljj30gy04xq39.jpg</a>)</p>
-<p>然后下载一下镜像：</p>
+<pre><code>cd awd-platform/</code></pre><p>然后下载一下镜像：</p>
 <pre><code>docker pull zhl2008/web_14.04</code></pre><p>这块我卡了好久，他最后按文档操作会报错，后来我看源码的docker名字不是这个，而是zhl2008/web14.04 web14.04 所以为了方便直接可以改一下镜像的名字，这样就不用改源码去了</p>
 <pre><code>docker tag zhl2008/web_14.04 web_14.04</code></pre><p>然后接下来按照文档里说的操作一下</p>
-<p>(<a href="https://ws1.sinaimg.cn/large/006Y5bsfly1g0ws7ywxl5j30ke08lmx9.jpg" target="_blank" rel="noopener">https://ws1.sinaimg.cn/large/006Y5bsfly1g0ws7ywxl5j30ke08lmx9.jpg</a>)</p>
 <p>我这里实际的命令有</p>
 <pre><code>python batch.py web_yunnan_simple 10
 
-python start.py ./ 10</code></pre><p>(<a href="https://ws1.sinaimg.cn/large/006Y5bsfly1g0ws9henksj30me0b8jsu.jpg" target="_blank" rel="noopener">https://ws1.sinaimg.cn/large/006Y5bsfly1g0ws9henksj30me0b8jsu.jpg</a>)</p>
-<p>这里用这个webyunnansimple的环境做例子，这个环境非常典型，包含了很多的基础漏洞，包括我的框架就是依照这个环境测试的</p>
+python start.py ./ 10</code></pre><p>这里用这个webyunnansimple的环境做例子，这个环境非常典型，包含了很多的基础漏洞，包括我的框架就是依照这个环境测试的</p>
 <p>到现在为止，我们的靶机就可以访问了</p>
 <p>因为是在一个服务器上运行了多个docker，靶机的映射端口规则是:</p>
 <p>team1 —-8801 team2 —- 8802 team3 —-8803</p>
 <p>….以此类推</p>
 <p>例如在我的环境下，靶机的地址就是：<a href="http://ip:8801-8810" target="_blank" rel="noopener">http://ip:8801-8810</a></p>
-<p>(<a href="https://ws1.sinaimg.cn/large/006Y5bsfly1g0wsblipqjj30u00flta5.jpg" target="_blank" rel="noopener">https://ws1.sinaimg.cn/large/006Y5bsfly1g0wsblipqjj30u00flta5.jpg</a>)</p>
 <p>各个靶机的ssh密码可以在项目的文件夹下的pass.txt文件中</p>
-<p>(<a href="https://ws1.sinaimg.cn/large/006Y5bsfly1g0wsbvy8mqj30hi05pq3g.jpg" target="_blank" rel="noopener">https://ws1.sinaimg.cn/large/006Y5bsfly1g0wsbvy8mqj30hi05pq3g.jpg</a>)</p>
 <p>ssh的端口规则是：</p>
 <p>可以用docker ps来查看运行的镜像</p>
 <p>还有一个要注意的地方就是，在项目的根目录的flag_server/中，我们 要赋予score.txt 和result.txt 777权限，否则分数变动无法进行同步</p>
 <p>关于flag的提交方式和文档是一样的</p>
-<p>(<a href="https://ws1.sinaimg.cn/large/006Y5bsfly1g0wsd4pyzgj30r103mdfq.jpg" target="_blank" rel="noopener">https://ws1.sinaimg.cn/large/006Y5bsfly1g0wsd4pyzgj30r103mdfq.jpg</a>)</p>
 <p>得分情况可以访问ip:8080/score.txt</p>
-<p>(<a href="https://ws1.sinaimg.cn/large/006Y5bsfly1g0wsddrwjoj30c302dmwy.jpg" target="_blank" rel="noopener">https://ws1.sinaimg.cn/large/006Y5bsfly1g0wsddrwjoj30c302dmwy.jpg</a>)</p>
 <h2 id="END"><a href="#END" class="headerlink" title="END"></a>END</h2><p>还没测试</p>
 
         
@@ -697,7 +690,7 @@ python start.py ./ 10</code></pre><p>(<a href="https://ws1.sinaimg.cn/large/006Y
             </a>
             <ul class="dropdown-menu">
             <li>
-                <a class="sidebar_archives-link" href="/archives/2020/12/">十二月 2020<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/archives/2020/02/">二月 2020<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/12/">十二月 2019<span class="sidebar_archives-count">6</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/07/">七月 2019<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/05/">五月 2019<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/04/">四月 2019<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/03/">三月 2019<span class="sidebar_archives-count">4</span></a></li><li><a class="sidebar_archives-link" href="/archives/2018/11/">十一月 2018<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2018/09/">九月 2018<span class="sidebar_archives-count">5</span></a></li><li><a class="sidebar_archives-link" href="/archives/2018/06/">六月 2018<span class="sidebar_archives-count">6</span></a></li><li><a class="sidebar_archives-link" href="/archives/2018/05/">五月 2018<span class="sidebar_archives-count">6</span></a></li><li><a class="sidebar_archives-link" href="/archives/2018/04/">四月 2018<span class="sidebar_archives-count">1</span></a>
+                <a class="sidebar_archives-link" href="/archives/2020/12/">十二月 2020<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2020/02/">二月 2020<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/12/">十二月 2019<span class="sidebar_archives-count">6</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/07/">七月 2019<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/03/">三月 2019<span class="sidebar_archives-count">4</span></a></li><li><a class="sidebar_archives-link" href="/archives/2018/11/">十一月 2018<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2018/06/">六月 2018<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2018/04/">四月 2018<span class="sidebar_archives-count">1</span></a>
             </ul>
         </li>
         
@@ -715,7 +708,7 @@ python start.py ./ 10</code></pre><p>(<a href="https://ws1.sinaimg.cn/large/006Y
             </a>
             <ul class="dropdown-menu">
                 <li>
-                <a class="sidebar_archives-link" href="/categories/bookstudy/">bookstudy<span class="sidebar_archives-count">7</span></a></li><li><a class="sidebar_archives-link" href="/categories/ctf/">ctf<span class="sidebar_archives-count">10</span></a></li><li><a class="sidebar_archives-link" href="/categories/kali/">kali<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/categories/ubuntu/">ubuntu<span class="sidebar_archives-count">3</span></a></li><li><a class="sidebar_archives-link" href="/categories/图床/">图床<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/categories/网络攻防/">网络攻防<span class="sidebar_archives-count">9</span></a></li><li><a class="sidebar_archives-link" href="/categories/软件无线电/">软件无线电<span class="sidebar_archives-count">1</span></a>
+                <a class="sidebar_archives-link" href="/categories/bookstudy/">bookstudy<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/categories/ctf/">ctf<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/categories/kali/">kali<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/categories/ubuntu/">ubuntu<span class="sidebar_archives-count">3</span></a></li><li><a class="sidebar_archives-link" href="/categories/图床/">图床<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/categories/网络攻防/">网络攻防<span class="sidebar_archives-count">4</span></a></li><li><a class="sidebar_archives-link" href="/categories/软件无线电/">软件无线电<span class="sidebar_archives-count">1</span></a>
             </ul>
         </li>
         
@@ -779,7 +772,7 @@ python start.py ./ 10</code></pre><p>(<a href="https://ws1.sinaimg.cn/large/006Y
         <li>
             <a href="/archives">
                 文章总数
-                <span class="sidebar-badge">35</span>
+                <span class="sidebar-badge">16</span>
             </a>
         </li>
         
