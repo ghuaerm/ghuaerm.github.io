@@ -243,7 +243,7 @@
 
     
         <meta property="article:published_time" content="Tue Feb 04 2020 16:55:03 GMT+0800">
-        <meta property="article:modified_time" content="Tue Feb 04 2020 20:22:33 GMT+0800">
+        <meta property="article:modified_time" content="Sat Jan 30 2021 17:29:36 GMT+0800">
     
 
     <!-- The Twitter Card protocol -->
@@ -266,7 +266,7 @@
     "mainEntityOfPage": "http://www.gackerm.me/2020/02/04/RTL-SDR实现飞机跟踪/index.html",
     "headline": "RTL-SDR实现飞机跟踪",
     "datePublished": "Tue Feb 04 2020 16:55:03 GMT+0800",
-    "dateModified": "Tue Feb 04 2020 20:22:33 GMT+0800",
+    "dateModified": "Sat Jan 30 2021 17:29:36 GMT+0800",
     "author": {
         "@type": "Person",
         "name": "GhackerM",
@@ -522,15 +522,15 @@
         <h1 id="基于RTL-SDR的飞机追踪设计"><a href="#基于RTL-SDR的飞机追踪设计" class="headerlink" title="基于RTL-SDR的飞机追踪设计"></a>基于RTL-SDR的飞机追踪设计</h1><pre><code>本文将ADS-B和RTL-SDR技术相结合，使用软件接收1090MHZ的信号，解调，然后发送到一个虚拟雷达服务器软件上，把解调好的数据实时显示在Google地图上。并对系统的接收天线进行了设计和改进，用大量的实验数据验证了改进的效果。搭建了一个涵盖硬件和软件的飞机追踪系统,该系统可以较好地达到飞机追踪的目的且实现成本低。 
 
 关键词：RTL-SDR；软件无线电；ADS-B；虚拟雷达器</code></pre><h2 id="RTLSDR"><a href="#RTLSDR" class="headerlink" title="RTLSDR"></a>RTLSDR</h2><p>RTLSDR是一款超廉价的软件定义无线电，市场最常见这种RTL2832U解调器+R820T2调谐器方案。</p>
-<p><img src="https://1em0n.site/imgs/2020/02/3efd7c2a3dc62aa8.png" alt></p>
+<p><img src="https://mojito.buzz/imgs/2020/02/3efd7c2a3dc62aa8.png" alt></p>
 <p>100KHZ-1.7GHZ 全波段 RTL-SDR 接收机，可以连接电脑、安卓手机等设备，使用SDR软件接收100KHZ-1.7GHZ的电磁波支持AM、FM（WFM、NFM）、CW、DSB、LSB、USB解调。可收听中波、短波，FM广播、短波单边带通信，对讲机通话，航空波段等。包含主机、UV小天线，数据线。</p>
-<p><img src="https://1em0n.site/imgs/2020/02/2ba03a1e70bf4753.jpg" alt></p>
+<p><img src="https://mojito.buzz/imgs/2020/02/2ba03a1e70bf4753.jpg" alt></p>
 <h3 id="天线"><a href="#天线" class="headerlink" title="天线"></a>天线</h3><p>1090MHZ ADS-B室外全向玻璃钢天线，水平方向为360度覆盖，均匀辐射。在垂直方向有一定角度的波束，一般增益越大，角度越小。此款天线一般应用于室外通讯，天线接收能力强，信号稳定。</p>
-<p><img src="https://1em0n.site/imgs/2020/02/b819acfefc7a96a9.jpg" alt></p>
+<p><img src="https://mojito.buzz/imgs/2020/02/b819acfefc7a96a9.jpg" alt></p>
 <p>图中可以看出该全向玻璃钢天线的频率范围为1060-1120MHZ，带宽为60MHZ。而小吸盘天线的频率范围433MHZ，当然选择全向玻璃钢的天线，缺点就是成本较高。</p>
-<p><img src="https://1em0n.site/imgs/2020/02/fffbb3c51db304d5.jpg" alt></p>
+<p><img src="https://mojito.buzz/imgs/2020/02/fffbb3c51db304d5.jpg" alt></p>
 <h3 id="RTL接收软件"><a href="#RTL接收软件" class="headerlink" title="RTL接收软件"></a>RTL接收软件</h3><p>访问RTL-SDR支持的<a href="https://www.rtl-sdr.com/big-list-rtl-sdr-supported-software/" target="_blank" rel="noopener">软件的大列表</a>。其中SDR#（SDR Sharp）和HDSDR是目前Windows正在使用的最受欢迎的免费RTL-SDR兼容软件。而SDR Touch是一个基于Android的RTL-SDR软件接收器。可以从Google Play商店购买完整版。要运行SDR Touch，需要USB OTG支持的现代Android 4.0+设备，还需要USB OTG电缆将Android设备连接到RTL-SDR加密狗，当然首先需要科学上网。</p>
-<p><img src="https://1em0n.site/imgs/2020/02/3cd14be73e7fadbb.png" alt></p>
+<p><img src="https://mojito.buzz/imgs/2020/02/3cd14be73e7fadbb.png" alt></p>
 <ul>
 <li><p>SDR driver：rtl-sdr的rtl_tcp和libhackrf的Android端口，第三方应用程序可以使用此驱动程序来实现软件定义无线电（如SDR Touch）请记住，这个应用程序本身可能不是很有用，因为它只是一个驱动程序。它能够通过网络传输rtl_tcp。</p>
 </li>
@@ -538,7 +538,7 @@
 </li>
 </ul>
 <h3 id="虚拟雷达器"><a href="#虚拟雷达器" class="headerlink" title="虚拟雷达器"></a>虚拟雷达器</h3><p>Virtual Radar Server是Windows下运行本地Web服务器的开源.NET应用程序；而FlightAware Flight Feeder是一个Android应用程序，不仅可以解码ADS-B数据，还可以将其绘制在地图上。下图是本次设计所用的虚拟雷达器。</p>
-<p><img src="https://1em0n.site/imgs/2020/02/f02a256347f9d01e.png" alt></p>
+<p><img src="https://mojito.buzz/imgs/2020/02/f02a256347f9d01e.png" alt></p>
 <ul>
 <li><p>ADSB Flight Tracker：是一个Android应用程序，可让您以2D或3D显示ADS-B飞行数据。可以直接连接到手机上运行的RTL-SDR，这将使您更快地获取数据，并且延迟更少。使用从互联网共享的数据可能会有几秒的延迟。</p>
 </li>
@@ -563,29 +563,29 @@
 </li>
 </ol>
 <p>注意：天线连接到RTLSDR的25MHZ-1.7GHZ的接口处。室外环境搭建的整体如图所示。</p>
-<p><img src="https://1em0n.site/imgs/2020/02/1026e71e539efcb2.jpg" alt></p>
+<p><img src="https://mojito.buzz/imgs/2020/02/1026e71e539efcb2.jpg" alt></p>
 <h3 id="启动OTG和RTLSDR-driver"><a href="#启动OTG和RTLSDR-driver" class="headerlink" title="启动OTG和RTLSDR driver"></a>启动OTG和RTLSDR driver</h3><p>OTG是USB On-The-Go的缩写，为用于不同设备间的连接和数据交换。</p>
-<p><img src="https://1em0n.site/imgs/2020/02/ad208c9752ec863e.jpg" alt></p>
+<p><img src="https://mojito.buzz/imgs/2020/02/ad208c9752ec863e.jpg" alt></p>
 <ol>
 <li><p>打开手机的OTG选项，此时RTLSDR蓝灯亮起，即连接成功。</p>
 </li>
 <li><p>安装驱动，运行Rtl-sdr driver驱动程序,如图所示。</p>
 </li>
 </ol>
-<p><img src="https://1em0n.site/imgs/2020/02/31c024739b9b9828.jpg" alt></p>
+<p><img src="https://mojito.buzz/imgs/2020/02/31c024739b9b9828.jpg" alt></p>
 <p>注意：第一次运行时必须要先运行该驱动程序，之后不用打开即可。且不能同时打开两个软件，会显示error busy。最好每次打开一个软件的时候重新启动OTG。</p>
 <h3 id="运行Avare-ADSB"><a href="#运行Avare-ADSB" class="headerlink" title="运行Avare ADSB"></a>运行Avare ADSB</h3><p>首先运行Avare ADSB，在Traffic中查看飞机列表及详细信息，当有两个或两个以上飞机时，点击Map选项，会在地图上定位当前位置并显示飞机运行轨迹。注意，此时要打开VPN，因为要用到Google地图。</p>
-<p><img src="https://1em0n.site/imgs/2020/02/6488630a71e0662d.jpg" alt></p>
-<p><img src="https://1em0n.site/imgs/2020/02/d2e7976291d1e24c.jpg" alt></p>
-<p><img src="https://1em0n.site/imgs/2020/02/be087f2706659073.jpg" alt></p>
+<p><img src="https://mojito.buzz/imgs/2020/02/6488630a71e0662d.jpg" alt></p>
+<p><img src="https://mojito.buzz/imgs/2020/02/d2e7976291d1e24c.jpg" alt></p>
+<p><img src="https://mojito.buzz/imgs/2020/02/be087f2706659073.jpg" alt></p>
 <p>Avare ADSB的优点是操作比较简单，界面整洁，不足的就是性能比较差，延迟太多且信息不完整。</p>
 <h3 id="运行ADSB-Flight-Tracker"><a href="#运行ADSB-Flight-Tracker" class="headerlink" title="运行ADSB Flight Tracker"></a>运行ADSB Flight Tracker</h3><p>对比Avare ADSB而言ADSB Flight Tracker显示的飞机数量很可观，点击飞机之后会显示出飞机的详细信息和轨迹，从图4.8中还可以看出，可以定位到哈尔滨太平机场。图中显示的是2D平面图，当然也可以切换到3D图像以及画面主题。</p>
-<p><img src="https://1em0n.site/imgs/2020/02/9d0ed0490bb9cd3e.jpg" alt></p>
-<p><img src="https://1em0n.site/imgs/2020/02/01eab96816b8a8af.jpg" alt></p>
-<p><img src="https://1em0n.site/imgs/2020/02/53beae143218befa.jpg" alt></p>
+<p><img src="https://mojito.buzz/imgs/2020/02/9d0ed0490bb9cd3e.jpg" alt></p>
+<p><img src="https://mojito.buzz/imgs/2020/02/01eab96816b8a8af.jpg" alt></p>
+<p><img src="https://mojito.buzz/imgs/2020/02/53beae143218befa.jpg" alt></p>
 <p>ADSB Flight Tracker的优点则是功能较多且延迟少，飞机数量很可观；不足就是上手有难度，界面繁琐。</p>
 <h2 id="问题及分析"><a href="#问题及分析" class="headerlink" title="问题及分析"></a>问题及分析</h2><p>该设计最终确定在Android下运行，一是因为方便，二是因为在PC端地图显示失败的原因。最初的想法就是按照大众的设计在Windows下实现，过程依然是将ADS-B和RTL-SDR技术相结合，使用软件接收1090MHZ的信号，解调，然后发送到一个虚拟雷达服务器软件上，把解调好的数据实时显示在Google地图上。但是在虚拟雷达服务器Virtual Rader显示Google地图的时候出现了错误。</p>
-<p><img src="https://1em0n.site/imgs/2020/02/de476ac9437a3325.png" alt></p>
+<p><img src="https://mojito.buzz/imgs/2020/02/de476ac9437a3325.png" alt></p>
 
         
     
@@ -628,6 +628,14 @@
             <!-- Post Prev & Next Nav -->
             <nav class="material-nav mdl-color-text--grey-50 mdl-cell mdl-cell--12-col">
     <!-- Prev Nav -->
+    
+        <a href="/2020/12/30/hello-world/" id="post_nav-newer" class="prev-content">
+            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
+                <i class="material-icons">arrow_back</i>
+            </button>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            新篇
+        </a>
     
 
     <!-- Section Spacer -->
@@ -677,7 +685,7 @@
 
     <!-- Sidebar Email -->
     <a data-toggle="dropdown" class="sidebar-brand" href="#settings-dropdown">
-        1em0n.site
+        mojito.buzz
         <b class="caret"></b>
     </a>
 </div>
@@ -690,7 +698,7 @@
         <ul id="settings-dropdown" class="dropdown-menu">
             
                 <li>
-                    <a href="https://1em0n.site" target="_blank" title="图床">
+                    <a href="https://mojito.buzz" target="_blank" title="图床">
                         
                             <i class="material-icons sidebar-material-icons sidebar-indent-left1pc-element">images</i>
                         
@@ -726,7 +734,7 @@
             </a>
             <ul class="dropdown-menu">
             <li>
-                <a class="sidebar_archives-link" href="/archives/2020/02/">二月 2020<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/12/">十二月 2019<span class="sidebar_archives-count">6</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/07/">七月 2019<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/06/">六月 2019<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/05/">五月 2019<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/04/">四月 2019<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/03/">三月 2019<span class="sidebar_archives-count">4</span></a></li><li><a class="sidebar_archives-link" href="/archives/2018/11/">十一月 2018<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2018/09/">九月 2018<span class="sidebar_archives-count">5</span></a></li><li><a class="sidebar_archives-link" href="/archives/2018/06/">六月 2018<span class="sidebar_archives-count">6</span></a></li><li><a class="sidebar_archives-link" href="/archives/2018/05/">五月 2018<span class="sidebar_archives-count">6</span></a></li><li><a class="sidebar_archives-link" href="/archives/2018/04/">四月 2018<span class="sidebar_archives-count">1</span></a>
+                <a class="sidebar_archives-link" href="/archives/2020/12/">十二月 2020<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/archives/2020/02/">二月 2020<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/12/">十二月 2019<span class="sidebar_archives-count">6</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/07/">七月 2019<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/05/">五月 2019<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/04/">四月 2019<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/03/">三月 2019<span class="sidebar_archives-count">4</span></a></li><li><a class="sidebar_archives-link" href="/archives/2018/11/">十一月 2018<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2018/09/">九月 2018<span class="sidebar_archives-count">5</span></a></li><li><a class="sidebar_archives-link" href="/archives/2018/06/">六月 2018<span class="sidebar_archives-count">6</span></a></li><li><a class="sidebar_archives-link" href="/archives/2018/05/">五月 2018<span class="sidebar_archives-count">6</span></a></li><li><a class="sidebar_archives-link" href="/archives/2018/04/">四月 2018<span class="sidebar_archives-count">1</span></a>
             </ul>
         </li>
         
